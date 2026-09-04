@@ -222,6 +222,38 @@ EFI Shell; se a BC-250 for esta mesma máquina, o desligamento encerra esta sess
 9. Se a BC-250 for esta máquina: reconecte o SSD e boote o Windows normalmente. A imagem seguirá
    sem aceleração de GPU — normal nesta placa (driver de GPU só no Linux).
 
+### 3.7 Erros comuns do flash (pesquisado) e correções
+
+Erros reais reportados pela comunidade (Reddit r/BC250Gaming, guias espelhos, docs oficiais) e o que
+fazer com cada um:
+
+| Erro/sintoma | Causa provável | Correção |
+|---|---|---|
+| **`Shell: Cannot read from file - Media Changed`** (script morre no meio) | Script `.nsh` sendo lido do device **raw** (`blk0:`) ou remapeado no meio da execução (ex.: `map -r` dentro do script); USB re-enumerou | Rode o script/comandos a partir de **`fs0:`** (filesystem, não `blk0:`); nunca use `map -r` dentro de scripts; se persistir, recoloque o pendrive, tente **outra porta USB (2.0 de preferência)** ou outro pendrive |
+| `'pwd' is not recognized` / `'echo.' is not recognized` | O shell do kit é o **EFI Shell 1.x** (antigo, estilo cmd.exe) — não conhece `pwd`/`echo.` | Use só `echo texto`, `ls`, `stall`, `reset`; o `flash-safe.nsh` v2 já está compatível |
+| Flasher roda ~1 min, **glitch na tela**, e nada muda após reboot (caso no Reddit) | ROM corrompida/pendrive ruim/porta problemática | **Re-baixar a ROM e conferir o SHA256**; trocar pendrive/porta USB; remover o NVMe durante o flash; refazer o flash; CMOS clear via **jumper** |
+| AFU diz **"unable to open"/"file not found"** | Device/diretório errado ou nome errado | Entrar no `fs0:` correto, `ls` e conferir; o arquivo tem que estar na raiz com o nome **exato `Robin5.00`** (sem extensão) |
+| AFU diz **"ROM file size" mismatch** | Arquivo corrompido ou não é a ROM completa | Toda ROM da BC-250 tem **exatamente 16.777.216 bytes (16 MB)**; tamanho diferente = refazer download |
+| AFU diz **"ROM ID mismatch"** | ROM de outra família | O kit passa `/x` (não checa ROM ID); se ainda der, o arquivo está errado — refazer download + hash |
+| Flash **"successful" mas configurações não persistem** | USB flash não limpa a NVRAM — **problema conhecido** | **CMOS clear via jumper CLRCMOS**: desligue da tomada, remova o USB, mova o jumper (pins 2-3) por ~20 s, volte, ligue — a comunidade relata que **o jumper é mais confiável que remover a bateria** |
+| Placa não dá POST após o flash | Flash parcial/corrompido | Escada de recuperação: (1) CMOS clear via jumper; (2) re-flash via USB; (3) programador de hardware **CH347/CH341A (3,3 V!)** no chip `BIOS_A1` de 16 MB — **nunca** no `SIO1_R` de 512 KB |
+
+**Checklist anti-falha para a próxima tentativa** (correlacionado dos guias oficiais e da comunidade):
+
+- [ ] SHA256 da ROM conferido (`48fbe5d3…40b5` para a mod P3.00)
+- [ ] **NVMe/SSDs desconectados** (o guia do csabakecskemeti recomenda remover até por segurança)
+- [ ] Display **DisplayPort direto** (adaptadores HDMI causam tela preta no shell)
+- [ ] Pendrive FAT32 pequeno; tente porta **USB 2.0** se houver instabilidade
+- [ ] Rodar de **`fs0:`** (não `blk0:`); conferir `ls` antes
+- [ ] Após o flash: desligar → remover USB → **CMOS clear via jumper** (não só bateria) → reconfigurar
+- [ ] Rede de segurança: `bios\BC250_3.00.ROM` (stock verificada) para restaurar
+
+**Fontes:** docs oficiais [flashing](https://elektricM.github.io/amd-bc250-docs/bios/flashing/) e
+[recovery](https://elektricM.github.io/amd-bc250-docs/bios/recovery/); threads do r/BC250Gaming
+("Bios flashing not working", "CMOS not persistent after 8 core BIOS Flash", "CMOS reset doesn't seem
+to be working"); [guia HandHeldModz](https://handheldmodz.com/bc-250-bios-flash/);
+[csabakecskemeti/amd_bc-250_how-to](https://github.com/csabakecskemeti/amd_bc-250_how-to).
+
 ---
 
 ## 4. Configuração da BIOS
