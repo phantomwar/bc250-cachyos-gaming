@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-label="AMD BC-250 x CachyOS">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1017"/>
+      <stop offset="1" stop-color="#141c2b"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4fc3f7"/>
+      <stop offset="0.5" stop-color="#7dd3fc"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="die" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1b2436"/>
+      <stop offset="1" stop-color="#101828"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="300" rx="20" fill="url(#bg)"/>
+  <rect x="1.5" y="1.5" width="1197" height="297" rx="19" fill="none" stroke="#2a2f3a" stroke-width="3"/>
+
+  <!-- chip -->
+  <g transform="translate(70,70)">
+    <rect x="14" y="-6" width="122" height="12" rx="3" fill="#232c3f"/>
+    <rect x="14" y="144" width="122" height="12" rx="3" fill="#232c3f"/>
+    <rect x="-6" y="14" width="12" height="122" rx="3" fill="#232c3f"/>
+    <rect x="144" y="14" width="12" height="122" rx="3" fill="#232c3f"/>
+    <rect x="0" y="0" width="150" height="150" rx="16" fill="url(#die)" stroke="url(#acc)" stroke-width="3"/>
+    <rect x="28" y="28" width="94" height="94" rx="10" fill="none" stroke="#2f3b52" stroke-width="2"/>
+    <text x="75" y="86" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="28" font-weight="bold" fill="#4fc3f7">BC250</text>
+    <text x="75" y="110" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#7c8aa0">PS5 APU</text>
+  </g>
+
+  <!-- title -->
+  <text x="290" y="112" font-family="Segoe UI, Arial, sans-serif" font-size="50" font-weight="800" fill="#f1f5f9">AMD BC-250 <tspan fill="#4fc3f7">×</tspan> CachyOS</text>
+  <text x="293" y="152" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#9aa4b2">O APU do PlayStation 5 virando Steam Machine caseira</text>
+  <rect x="293" y="172" width="140" height="4" rx="2" fill="url(#acc)"/>
+
+  <!-- chips -->
+  <g font-family="Consolas, 'Courier New', monospace" font-size="15" fill="#8fd3f4">
+    <rect x="293" y="200" width="160" height="36" rx="18" fill="#0f1725" stroke="#2a2f3a"/>
+    <text x="373" y="223" text-anchor="middle">Zen 2 · 8 núcleos</text>
+    <rect x="468" y="200" width="160" height="36" rx="18" fill="#0f1725" stroke="#2a2f3a"/>
+    <text x="548" y="223" text-anchor="middle">RDNA2 · 40 CUs</text>
+    <rect x="643" y="200" width="160" height="36" rx="18" fill="#0f1725" stroke="#2a2f3a"/>
+    <text x="723" y="223" text-anchor="middle">16 GB GDDR6</text>
+    <rect x="818" y="200" width="160" height="36" rx="18" fill="#0f1725" stroke="#2a2f3a"/>
+    <text x="898" y="223" text-anchor="middle">1080p · 60+ FPS</text>
+  </g>
+
+  <!-- corner glow accents -->
+  <circle cx="1150" cy="40" r="90" fill="#4fc3f7" opacity="0.05"/>
+  <circle cx="60" cy="270" r="70" fill="#a78bfa" opacity="0.05"/>
+</svg>

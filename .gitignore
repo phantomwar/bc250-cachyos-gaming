@@ -1,0 +1,18 @@
+# Binários de firmware — nunca commitar (licença/segurança/tamanho)
+*.rom
+*.bin
+*.zip
+bios/
+
+# Repos de terceiros clonados para pesquisa local
+repos/
+
+# Artefatos gerados localmente
+*.html
+
+# Python
+__pycache__/
+*.pyc
+
+# Sessão/scratch
+.openclaw/
