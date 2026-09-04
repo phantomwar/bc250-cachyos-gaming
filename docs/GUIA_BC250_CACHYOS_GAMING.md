@@ -110,6 +110,15 @@ confirmados:
 > mas **não está publicado publicamente** (circula só no Discord, sem hash canônico) e é fácil
 > de brickar. **Fique no P3.00** a menos que seja usuário avançado.
 
+> **🔧 Tem uma base diferente (P4.00/P5.00) e quer customizar?** Mods públicas existem apenas para a
+> base **P3.00** (chipset menu; e a `MeiMeiDXE-T-v2` com core unlock). Para montar uma **firmware
+> customizada sua** (backup + flash com menu interativo), use o script
+> [Forbidden-Darkness/AMD-BC-250-UEFI-v2.2-Firmware-Menu-Script](https://github.com/Forbidden-Darkness/AMD-BC-250-UEFI-v2.2-Firmware-Menu-Script)
+> com os módulos DXE da comunidade (ex.: [BC250-DXE-SMU-Core-Unlock](https://github.com/RescueMei/BC250-DXE-SMU-Core-Unlock),
+> [bc250-efi-core-unlock](https://github.com/Hexxeh/bc250-efi-core-unlock)) — e valide o resultado no
+> [Discord](https://discord.gg/8eZfFWhczz) antes de gravar. Flash da mod P3.00 **sobre** qualquer base
+> (P2–P5) é o caminho suportado e seguro.
+
 ### 3.2 Método 1 — Flash via USB (EFI Shell) — recomendado
 
 1. Formate a pen drive em **FAT32**.

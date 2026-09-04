@@ -19,6 +19,13 @@
 > [!WARNING]
 > **Resumo dos riscos antes de qualquer coisa.** A BC-250 é hardware **ex-minerador, vendido sem garantia**. Flashear a BIOS, destravar núcleos/CUs e fazer overclock têm **risco real de instabilidade ou dano permanente**. Este repositório documenta o caminho **mais seguro validado pela comunidade** — com hashes verificados e imagem de recuperação — mas **você é responsável** pela sua fonte, refrigeração e execução. **Nunca use Smokeless_UMAF** nesta placa.
 
+> [!CAUTION]
+> **Versão da BIOS — confira antes de flashear.** Este guia e os scripts usam a **mod P3.00 CHIPSETMENU** (padrão da comunidade), validada partindo de uma placa **stock P3.00**. As placas saíram em **P2.00 / P3.00 / P4.00 / P5.00** — e **todas aceitam a mod P3.00** (voltar à base P3.00 é intencional e seguro: é o que destrava VRAM dinâmica + menus de chipset).
+>
+> - 🔧 **Quer base P5.00 ou uma firmware customizada sua?** Não existem mods públicas para outras bases — a `P5.00_clv` (destrava tudo) circula **só no Discord, sem hash público** (confirme com ≥ 2 pessoas antes de usar). O caminho para montar a sua: **[Firmware Menu Script (Forbidden-Darkness)](https://github.com/Forbidden-Darkness/AMD-BC-250-UEFI-v2.2-Firmware-Menu-Script)** — backup + flash de firmware custom via menu interativo — combinado com módulos DXE da comunidade, como o **[BC250-DXE-SMU-Core-Unlock](https://github.com/RescueMei/BC250-DXE-SMU-Core-Unlock)** e o **[bc250-efi-core-unlock](https://github.com/Hexxeh/bc250-efi-core-unlock)**. Valide no **[Discord](https://discord.gg/8eZfFWhczz)** antes de gravar.
+> - 💾 **ROMs stock de todas as versões (com hashes):** [GitLab TuxThePenguin0/bc250-bios](https://gitlab.com/TuxThePenguin0/bc250-bios/) · [kenavru/BC-250](https://github.com/kenavru/BC-250)
+> - ☠️ **Nunca use Smokeless_UMAF** — risco de dano permanente.
+
 ---
 
 ## 🧠 O que é a BC-250?
@@ -95,6 +102,7 @@ flowchart LR
 4. **⚙️ Governor de GPU** — `cyan-skillfish-governor-smu` (funciona sem patch de kernel) → seção 6
 5. **🔋 Fix ACPI** — tabelas SSDT 8-core para C-states/P-states (800–3200 MHz) → seção 7
 6. **⚡ Opcional: unlocks + OC** — 8 núcleos, 40 CUs e curvas de tensão → seções 9–11
+7. **🌬️ Case + refrigeração** — escolha ventoinha, pads de VRAM e case 3D (console-style ou **ATX**) → [guia de refrigeração](docs/GUIA_REFRIGERACAO_E_CASES.md)
 
 **Automatize a pós-instalação (CachyOS):**
 
@@ -117,7 +125,8 @@ bc250-cachyos-gaming/
 ├── 📄 README.md                      ← você está aqui
 ├── ❓ FAQ.md                         ← 20+ perguntas frequentes
 ├── 📖 docs/
-│   └── GUIA_BC250_CACHYOS_GAMING.md  ← o guia completo (15 seções)
+│   ├── GUIA_BC250_CACHYOS_GAMING.md  ← o guia completo (15 seções)
+│   └── GUIA_REFRIGERACAO_E_CASES.md  ← refrigeração recomendada + cases 3D (ATX, console-style)
 ├── 🛠️ scripts/
 │   ├── setup-bc250-cachyos.sh        ← pós-instalação no CachyOS (menu interativo)
 │   ├── make_flash_usb.ps1            ← prepara o pendrive de flash no Windows (sem formatar)
@@ -128,6 +137,7 @@ bc250-cachyos-gaming/
 | Arquivo | Para quê |
 |---|---|
 | [docs/GUIA_BC250_CACHYOS_GAMING.md](docs/GUIA_BC250_CACHYOS_GAMING.md) | Guia passo a passo: BIOS, ACPI, governor, unlocks, overclock, troubleshooting e fontes |
+| [docs/GUIA_REFRIGERACAO_E_CASES.md](docs/GUIA_REFRIGERACAO_E_CASES.md) | 🌬️ Refrigeração recomendada (fans, pasta, VRAM do backplate, PWM) + **catálogo de cases 3D** — incluindo os 7 projetos para **PSU ATX** |
 | [FAQ.md](FAQ.md) | Perguntas frequentes organizadas por nível (iniciante → avançado) |
 | [scripts/setup-bc250-cachyos.sh](scripts/setup-bc250-cachyos.sh) | Menu interativo: governor, sensores, ACPI, parâmetros de kernel, unlocks |
 | [scripts/make_flash_usb.ps1](scripts/make_flash_usb.ps1) | Monta o pendrive de flash com **verificação de hash** e shell embutido — **não formata, não apaga** |
