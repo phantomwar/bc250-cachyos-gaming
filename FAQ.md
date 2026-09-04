@@ -65,7 +65,7 @@ Funciona, mas é **limitado** — a RDNA2 da BC-250 tem RT por hardware, e jogos
 
 ### 11. Como atualizo a BIOS da minha placa stock P3.00?
 
-O caminho validado: pendrive FAT32 com o **kit EFI + a ROM mod P3.00 renomeada para `Robin5.00`**, boot no EFI Shell da própria placa, `blk0:` + `Flash.nsh`, **CMOS clear depois**. O script [`scripts/make_flash_usb.ps1`](scripts/make_flash_usb.ps1) monta esse pendrive com **verificação de hash** no Windows. → *Guia, seções 3.2 e 3.6.*
+O caminho **validado em campo (set/2026)**: pendrive FAT32 com o **kit EFI + a ROM mod P3.00 renomeada para `Robin5.00`**, boot no EFI Shell do próprio pendrive, **`fs0:` → `ls` → `flash-safe.nsh`**, **CMOS clear via jumper depois**. O script [`scripts/make_flash_usb.ps1`](scripts/make_flash_usb.ps1) monta esse pendrive com **verificação de hash** no Windows, e o [`scripts/flash-safe.nsh`](scripts/flash-safe.nsh) é compatível com o EFI Shell 1.x do kit (o `blk0:` + `Flash.nsh` original também funciona, mas o `fs0:` evita o erro "Media Changed"). → *Guia, seções 3.2, 3.6 e 3.7.*
 
 ### 12. Minha placa veio com P4.00/P5.00 — a mod P3.00 serve? Dá para customizar outra versão?
 

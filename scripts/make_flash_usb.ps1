@@ -130,7 +130,7 @@ Get-ChildItem $root -Force | Select-Object Name, Length | Format-Table -AutoSize
 Write-Host 'Pendrive pronto! Proximos passos (fisicos, na BC-250):' -ForegroundColor Yellow
 Write-Host '  1. Desligue a BC-250 (shutdown completo) e desconecte os SSDs/drives'
 Write-Host '  2. Conecte o pendrive e ligue -> prompt amarelo Shell>'
-Write-Host '  3. Digite: blk0:  (com espaco depois dos :) -> Enter; depois: Flash.nsh -> Enter'
+Write-Host '  3. Digite: fs0:  -> Enter; ls para conferir os arquivos; depois: flash-safe.nsh -> Enter (caminho validado em campo)'
 Write-Host '  4. NAO toque/desligue. Ao reiniciar sozinho, desligue e remova o pendrive'
 Write-Host '  5. CMOS clear: bateria CR2032 fora >= 60 s; reconfigure a BIOS (VRAM 512MB, IOMMU Disabled, UEFI)'
 Write-Host ''

@@ -96,7 +96,7 @@ flowchart LR
 > [!TIP]
 > Cada passo com comandos, avisos e alternativas está no **[guia completo](docs/GUIA_BC250_CACHYOS_GAMING.md)** — 15 seções, do flash da BIOS ao troubleshooting.
 
-1. **🔧 Flash da BIOS** — grave a **mod P3.00** (hash ✔) via pendrive no EFI Shell e **limpe o CMOS** depois → seção 3
+1. **🔧 Flash da BIOS** — grave a **mod P3.00** (hash ✔) via pendrive no EFI Shell (**caminho validado: `fs0:` + `flash-safe.nsh`**) e **limpe o CMOS** pelo jumper depois → seção 3
 2. **🎛️ Configure a BIOS** — VRAM **512 MB dinâmico** · **IOMMU Disabled** · Boot UEFI → seção 4
 3. **💿 Instale o CachyOS** — ISO padrão; kernel **6.18 LTS** ou **6.17.11+** (evite 6.15.0–6.15.6) → seção 5
 4. **⚙️ Governor de GPU** — `cyan-skillfish-governor-smu` (funciona sem patch de kernel) → seção 6

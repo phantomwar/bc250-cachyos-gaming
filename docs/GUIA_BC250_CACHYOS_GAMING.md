@@ -129,8 +129,10 @@ confirmados:
 5. **Desconecte todos os discos/SSDs** (sem drive de OS, a placa cai na EFI Shell automaticamente).
 6. Insira o USB, ligue a placa. Ela deve entrar direto na **EFI Shell** (texto amarelo em fundo preto).
 7. No prompt `Shell>`:
-   - digite `blk0:` (com espaço depois dos dois pontos) e Enter;
-   - digite `Flash.nsh` e Enter.
+   - digite `fs0:` e Enter; depois `ls` para conferir os arquivos;
+   - então `flash-safe.nsh` e Enter (**caminho validado em campo**, set/2026).
+   - Alternativa: `blk0:` + `Flash.nsh` (fluxo antigo da doc) — mas `fs0:` evita o erro
+     "Media Changed" de scripts lidos do device raw.
 8. **NÃO toque no teclado nem desligue.** Se parecer travado, aguarde **15 minutos**.
 9. Ao terminar, a placa reinicia. **Desligue e remova o USB imediatamente.**
 
@@ -210,8 +212,10 @@ EFI Shell; se a BC-250 for esta mesma máquina, o desligamento encerra esta sess
    selecione o pendrive no menu de boot.
 3. Conecte o pendrive e ligue. O kit traz o shell embutido (`EFI\BOOT`): vai abrir o prompt
    amarelo `Shell>` automaticamente.
-4. Digite `blk0:` (**com um espaço depois dos `:`**) → Enter; depois `Flash.nsh` → Enter.
-   (Se `blk0:` não listar o pendrive, use `fs0:` e rode `Flash.nsh` de lá.)
+4. Digite `fs0:` → Enter → `ls` (conferir os arquivos) → `flash-safe.nsh` → Enter.
+   ✅ **Caminho validado em campo (set/2026): `fs0:` + `flash-safe.nsh` = flash concluído com sucesso.**
+   (Alternativa antiga: `blk0:` + `Flash.nsh`. O `blk0:` é o device **raw** — scripts lidos de lá
+   podem morrer com "Media Changed" se algo remapear; prefira sempre `fs0:`.)
 5. **Não toque em nada e não desligue.** Se parecer travado, espere ≥ 15 min. O script dá `reset`
    sozinho ao terminar.
 6. Quando reiniciar: **desligue imediatamente e remova o pendrive.**
@@ -229,7 +233,7 @@ fazer com cada um:
 
 | Erro/sintoma | Causa provável | Correção |
 |---|---|---|
-| **`Shell: Cannot read from file - Media Changed`** (script morre no meio) | Script `.nsh` sendo lido do device **raw** (`blk0:`) ou remapeado no meio da execução (ex.: `map -r` dentro do script); USB re-enumerou | Rode o script/comandos a partir de **`fs0:`** (filesystem, não `blk0:`); nunca use `map -r` dentro de scripts; se persistir, recoloque o pendrive, tente **outra porta USB (2.0 de preferência)** ou outro pendrive |
+| **`Shell: Cannot read from file - Media Changed`** (script morre no meio) | Script `.nsh` sendo lido do device **raw** (`blk0:`) ou remapeado no meio da execução (ex.: `map -r` dentro do script); USB re-enumerou | Rode a partir de **`fs0:`** (filesystem, não `blk0:`); nunca use `map -r` dentro de scripts. ✅ **Validado em campo (set/2026): `fs0:` + `flash-safe.nsh` v2 → flash OK.** Se persistir: recoloque o pendrive, **outra porta USB (2.0)** ou outro pendrive |
 | `'pwd' is not recognized` / `'echo.' is not recognized` | O shell do kit é o **EFI Shell 1.x** (antigo, estilo cmd.exe) — não conhece `pwd`/`echo.` | Use só `echo texto`, `ls`, `stall`, `reset`; o `flash-safe.nsh` v2 já está compatível |
 | Flasher roda ~1 min, **glitch na tela**, e nada muda após reboot (caso no Reddit) | ROM corrompida/pendrive ruim/porta problemática | **Re-baixar a ROM e conferir o SHA256**; trocar pendrive/porta USB; remover o NVMe durante o flash; refazer o flash; CMOS clear via **jumper** |
 | AFU diz **"unable to open"/"file not found"** | Device/diretório errado ou nome errado | Entrar no `fs0:` correto, `ls` e conferir; o arquivo tem que estar na raiz com o nome **exato `Robin5.00`** (sem extensão) |
